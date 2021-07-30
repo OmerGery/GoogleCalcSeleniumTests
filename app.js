@@ -22,16 +22,16 @@ class GooglePage {
       By.className(k_ResultClassTag)
     );
     let result = resultCollection[0];
-    
-    let calc = await new GooglePage(driver,rightButtons, result, plus,equal);
+
+    let calc = await new GooglePage(driver, rightButtons, result, plus, equal);
     return calc;
   }
-  constructor(driver,buttons, result, additionButton,equalButton) {
+  constructor(driver, buttons, result, additionButton, equalButton) {
     this._driver = driver;
     this._result = result;
     this._buttons = buttons;
     this._additionButton = additionButton;
-    this._equalButton = equalButton
+    this._equalButton = equalButton;
   }
   clickButton(buttonNum) {
     let button = this._buttons[buttonNum - 1];
@@ -45,9 +45,8 @@ class GooglePage {
     await this._additionButton.click();
     await this.clickButton(num2);
     await this._equalButton.click();
-    if(num1 + num2 != this._result)
-    {
-      console.log("the machine calculated the wrong result");
+    if (num1 + num2 != this._result) {
+      console.log("the website calculated the wrong result");
     }
   }
 }
@@ -57,6 +56,6 @@ async function main() {
   // await calc.clickButton(7);
   // let a = await calc.getResult();
   // console.log("\n" + a + "\n");
-  await calc.makeAdittionWithCalc(9,5);
+  await calc.makeAdittionWithCalc(9, 5);
 }
 main();
