@@ -1,0 +1,26 @@
+{
+  "name": "GoogleCalcTest",
+  "version": "1.0.0",
+  "description": "Automation Tests for the google calculator.",
+  "main": "app.js",
+  "dependencies": {
+    "selenium": "^2.20.0",
+    "selenium-webdriver": "^4.0.0-beta.4",
+    "webdriver": "^7.9.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  },
+  "scripts": {
+    "test": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "keywords": [
+    " "
+  ],
+  "author": "Omer Gery",
+  "license": "ISC"
+}
