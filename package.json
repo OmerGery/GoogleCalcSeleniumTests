@@ -12,7 +12,7 @@
     "jest": "^27.0.6"
   },
   "scripts": {
-    "test": "app.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

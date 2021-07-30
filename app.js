@@ -45,9 +45,7 @@ class GooglePage {
     await this._additionButton.click();
     await this.clickButton(num2);
     await this._equalButton.click();
-    if (num1 + num2 != this._result) {
-      console.log("the website calculated the wrong result");
-    }
+    return this._result;
   }
 }
 async function main() {
@@ -56,6 +54,7 @@ async function main() {
   // await calc.clickButton(7);
   // let a = await calc.getResult();
   // console.log("\n" + a + "\n");
-  await calc.makeAdittionWithCalc(9, 5);
+  return await calc.makeAdittionWithCalc(9, 5);
 }
 main();
+module.exports = main;
