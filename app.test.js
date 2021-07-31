@@ -8,7 +8,7 @@ const { conditionalExpression } = require("@babel/types");
 const { Builder, By, Key, util, Button } = require("selenium-webdriver");
 
 class GooglePage {
-  static async createPage() {
+  static async CreatePage() {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get(k_GooglePageLink);
     let rightButtons = await driver.findElements(
@@ -40,25 +40,28 @@ class GooglePage {
   getResult() {
     return this._result.getText();
   }
-  async makeAdittionWithCalc(num1, num2) {
-    await this.clickButton(num1);
-    await this._additionButton.click();
-    await this.clickButton(num2);
-    await this._equalButton.click();
-  }
 }
-async function main() {
-  calc = await GooglePage.createPage();
-  // await calc.clickButton(4);
-  // await calc.clickButton(7);
-  // let a = await calc.getResult();
-  // console.log("\n" + a + "\n");
-  await calc.makeAdittionWithCalc(3, 9);
-  let res = await calc.getResult();
-  console.log("\n\n\n " + res + " \n\n\n");
-  return res;
+
+class GoogleTests{
+    static async Additiontest(num1, num2) {
+      let Page = await GooglePage.CreatePage();
+      await Page.clickButton(num1);
+      await Page._additionButton.click();
+      await Page.clickButton(num2);
+      await Page._equalButton.click();
+      let res = await Page.getResult();
+      await Page._driver.sleep(1500);
+      await Page._driver.quit();
+      return res;
+    }
+  };
+async function main()
+{
+await GoogleTests.Additiontest(3, 9);
+await GoogleTests.Additiontest(4,7);
 }
 main();
+//GoogleTests.Additiontest(4, 8)
 // test("good ", () => {
-//   expect(main()).toBe("12");
+//   expect(GoogleTests.Additiontest(3, 9).toBe("12"));
 // });
