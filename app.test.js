@@ -94,7 +94,6 @@ class GoogleTests {
         amountOfNumberedButtons++;
       }
     }
-
     let res = "The amount of buttons is: " + amountOfButtons + "\n";
     res += "The amount of numbered buttons is: " + amountOfNumberedButtons;
     await Page._driver.quit();
