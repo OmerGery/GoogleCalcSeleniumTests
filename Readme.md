@@ -1,4 +1,4 @@
-##To Run The tests:##
+##To Run The tests:
 
 1.Install/Make sure that you have : Chrome,node.js,npm.
 
