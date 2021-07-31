@@ -68,8 +68,14 @@ class GoogleTests {
     await Page._driver.quit();
     return parseInt(res);
   }
-  static buttonCountTest() {
-    console.log("Hello");
+  static async buttonCountTest() {
+    let Page = await GooglePage.CreatePage();
+    let numbersButtons = 0;
+    let totalButtons = 0;
+    for (let button in Page._numbersButtons) {
+      console.log(button);
+    }
+    return numbersButtons.toString();
   }
 }
 //jest max time:
@@ -87,5 +93,10 @@ test(
     const result = await GoogleTests.Additiontest(num1, num2);
     expect(result).toBe(sum);
   }
-  
 );
+
+test("Button Counting Test:", async () => {
+  const buttonsAmounts = await GoogleTests.buttonCountTest();
+  console.log(buttonsAmounts);
+  expect(5).toBe(5);
+});
