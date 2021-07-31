@@ -74,6 +74,7 @@ class GoogleTests {
     await Page.enterNumber(num2);
     await Page._equalButton.click();
     let res = await Page.getResult();
+    await Page._driver.sleep(1200);
     await Page._driver.quit();
     return parseInt(res);
   }
@@ -81,15 +82,20 @@ class GoogleTests {
     let Page = await GooglePage.CreatePage();
     let allbuttons = Page._buttonsAsText;
     let amountOfNumberedButtons = 0;
-    let amountOfButtons =
-      Page._buttonsAsText.length - Page._numbersButtons.length;
-    let res = "The amount of buttons is: " + amountOfButtons;
-    for (let i = 0; i < amountOfButtons; i++) {
+    let amountOfButtons = 0;
+    for (let i = 0; i < allbuttons.length; i++) {
       let currentText = await allbuttons[i].getText();
+      if (currentText == "") {
+        // this the first tr tag which is outside of the Calc table.
+        break;
+      }
+      amountOfButtons++;
       if (currentText >= "0" && currentText <= "9") {
         amountOfNumberedButtons++;
       }
     }
+
+    let res = "The amount of buttons is: " + amountOfButtons + "\n";
     res += "The amount of numbered buttons is: " + amountOfNumberedButtons;
     await Page._driver.quit();
     return res;
