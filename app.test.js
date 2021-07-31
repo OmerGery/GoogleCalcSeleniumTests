@@ -43,14 +43,14 @@ class GooglePage {
     this._equalButton = equalButton;
   }
 
-  enterNumber(buttonNum) {
+  async enterNumber(buttonNum) {
     // recursive method to enter a number by pressing the calc keys.
     let digit = buttonNum % 10;
     if (buttonNum > 0) {
       this.enterNumber(Math.floor(buttonNum / 10));
     }
     let button = this._numbersButtons[numberToButtonMap[digit]];
-    button.click();
+    await button.click();
   }
   getResult() {
     return this._result.getText();
@@ -65,20 +65,27 @@ class GoogleTests {
     await Page.enterNumber(num2);
     await Page._equalButton.click();
     let res = await Page.getResult();
-    await Page._driver.sleep(1500);
     await Page._driver.quit();
     return parseInt(res);
   }
+  static buttonCountTest() {
+    console.log("Hello");
+  }
 }
-async function xmain() {
-  let x = await GoogleTests.Additiontest(10, 5);
-  console.log(x);
-}
-xmain();
-// test("Test 1: 10 + 5 = 15 ", async () => {
+//jest max time:
+const jestTimeOutTime = 30000;
+jest.setTimeout(jestTimeOutTime);
 
-//   const result = await GoogleTests.Additiontest(3,9)
-
-//   expect(result);
-
-// });
+//test 1 consts:
+const num1 = 5;
+const num2 = 10;
+const sum = num1 + num2;
+// the tests:
+test(
+  "Test 1: Addition of 2 numbers: " + num1 + " + " + num2 + " = " + sum,
+  async () => {
+    const result = await GoogleTests.Additiontest(num1, num2);
+    expect(result).toBe(sum);
+  }
+  
+);
