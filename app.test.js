@@ -42,26 +42,25 @@ class GooglePage {
   }
 }
 
-class GoogleTests{
-    static async Additiontest(num1, num2) {
-      let Page = await GooglePage.CreatePage();
-      await Page.clickButton(num1);
-      await Page._additionButton.click();
-      await Page.clickButton(num2);
-      await Page._equalButton.click();
-      let res = await Page.getResult();
-      await Page._driver.sleep(1500);
-      await Page._driver.quit();
-      return res;
-    }
-  };
-async function main()
-{
-await GoogleTests.Additiontest(3, 9);
-await GoogleTests.Additiontest(4,7);
+class GoogleTests {
+  static async Additiontest(num1, num2) {
+    let Page = await GooglePage.CreatePage();
+    await Page.clickButton(num1);
+    await Page._additionButton.click();
+    await Page.clickButton(num2);
+    await Page._equalButton.click();
+    let res = await Page.getResult();
+    //await Page._driver.sleep(1500);
+    await Page._driver.quit();
+    return parseInt(res);
+  }
 }
-main();
-//GoogleTests.Additiontest(4, 8)
-// test("good ", () => {
-//   expect(GoogleTests.Additiontest(3, 9).toBe("12"));
-// });
+
+
+test("Test 1: 10 + 5 = 15 ", async () => {
+
+  const result = await GoogleTests.Additiontest(3,9)
+
+  expect(result);
+  
+});
