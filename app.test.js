@@ -9,6 +9,7 @@ class GoogleTests {
     await Page.enterNumber(num2);
     await Page._equalButton.click();
     let res = await Page.getResult();
+    await Page._driver.sleep(1000);
     await Page._driver.quit();
     return parseInt(res);
   }
